@@ -1,0 +1,371 @@
+/* styles.css */
+body {
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    flex-direction: column;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px #ff6161;
+}
+
+#icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.icon {
+    font-size: 3rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.icon:hover {
+    transform: scale(1.3);
+}
+
+#game-screen {
+    text-align: center;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    grid-gap: 10px;
+    margin: 0 auto 20px;
+}
+
+.cell {
+    width: 120px;
+    height: 120px;
+    background-color: #ffeaa7;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 3px solid #fdcb6e;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    user-select: none;
+}
+
+.cell:hover {
+    transform: scale(1.1);
+    background-color: #fab1a0;
+}
+
+.cell.taken {
+    cursor: not-allowed;
+    background-color: #feca57;
+    box-shadow: none;
+}
+
+#message {
+    font-size: 1.5rem;
+    color: #fff;
+    text-shadow: 1px 1px #ff7675;
+    margin-bottom: 15px;
+}
+
+#reset-btn {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    background-color: #74b9ff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}/* Reset button click animation */
+#reset-btn:active {
+    transform: scale(1.2) rotate(10deg);
+    background-color: #0984e3;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Reset button animation when clicked (bouncing and explosion effect) */
+@keyframes resetExplosion {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        background-color: #74b9ff;
+    }
+    25% {
+        transform: scale(1.3);
+        background-color: #0984e3;
+    }
+    50% {
+        transform: scale(1.5);
+        background-color: #d63031;
+    }
+    75% {
+        transform: scale(1.3);
+        background-color: #0984e3;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        background-color: #74b9ff;
+    }
+}
+
+/* Apply the explosion animation when the button is clicked */
+#reset-btn.clicked {
+    animation: resetExplosion 0.6s ease-in-out;
+}
+
+/* Reset button hover effect */
+#reset-btn:hover {
+    background-color: #0984e3;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+/* Winning line animation */
+.cell.winning {
+    animation: highlight 1s infinite alternate;
+}
+
+@keyframes highlight {
+    0% {
+        background-color: #fdcb6e;
+        transform: scale(1);
+    }
+    100% {
+        background-color: #ffeaa7;
+        transform: scale(1.2);
+    }
+}
+
+/* Icon selection animation */
+.icon {
+    font-size: 3rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.icon:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+/* Draw game animation */
+.cell.draw {
+    animation: bounce 0.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Reset button click animation */
+#reset-btn:active {
+    transform: scale(1.1) rotate(-5deg);
+    background-color: #74b9ff;
+}
+
+/* Welcome Screen */
+#welcome-screen {
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column; /* This ensures the h1 and p are stacked vertically */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: fadeIn 3s ease-out, slideIn 2s ease-in-out forwards;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    position: relative;
+    overflow: hidden;
+}
+
+#welcome-screen h1 {
+    font-size: 4rem;
+    color: #74b9ff;
+    text-shadow: 2px 2px 10px rgba(255, 97, 97, 0.8);
+    animation: bounceIn 2s ease-out forwards;
+}
+
+#welcome-screen p {
+    font-size: 1.5rem;
+    color: #ffeaa7;
+    margin-top: 20px;
+    opacity: 0;
+    animation: slideDown 2s ease-out 1s forwards;
+}
+
+/* Background Animation for Welcome Screen */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Text Bounce Animation */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Slide Down Animation for the "Enjoy and Have Fun" message */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #fff;
+    padding: 10px;
+    background-color: #fdcb6e;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #2d3436;
+}
+
+footer p:hover {
+    color: #ff6161;
+    transform: scale(1.1);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Reset button click animation */
+#reset-btn:active {
+    transform: scale(1.2) rotate(10deg);
+    background-color: #0984e3;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Reset button animation when clicked (bouncing and explosion effect) */
+@keyframes resetExplosion {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        background-color: #74b9ff;
+    }
+    25% {
+        transform: scale(1.3);
+        background-color: #0984e3;
+    }
+    50% {
+        transform: scale(1.5);
+        background-color: #d63031;
+    }
+    75% {
+        transform: scale(1.3);
+        background-color: #0984e3;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        background-color: #74b9ff;
+    }
+}
+
+/* Apply the explosion animation when the button is clicked */
+#reset-btn.clicked {
+    animation: resetExplosion 0.6s ease-in-out;
+}
+
+/* Reset button hover effect */
+#reset-btn:hover {
+    background-color: #0984e3;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+/* Animation for the board reset */
+@keyframes resetBoard {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Apply the board reset animation to the game board */
+#game-board {
+    animation: resetBoard 3s ease-in-out forwards;
+}
+
+/* Cell reset animation */
+@keyframes cellReset {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+/* Apply cell reset animation */
+.cell.resetting {
+    animation: cellReset 3s ease-in-out forwards;
+}
