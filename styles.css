@@ -372,6 +372,9 @@ footer p:hover {
 
 /* Mobile and Tablet responsiveness */
 @media (max-width: 768px) {
+    *{
+        font-family: 'Comic Neue', sans-serif;
+    }
     h1 {
         font-size: 2rem;
     }
@@ -402,6 +405,9 @@ footer p:hover {
 }
 
 @media (max-width: 480px) {
+    *{
+    font-family: 'Comic Neue', sans-serif;
+    }
     h1 {
         font-size: 1.5rem;
     }
