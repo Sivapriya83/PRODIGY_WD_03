@@ -1,5 +1,4 @@
-// Sound effects (optional, you can remove if you don't need them)
-const moveSound = new Audio('move.mp3');
+
 const winSound = new Audio('win.wav');
 const resetSound = new Audio('reset.mp3');
 
